@@ -41,6 +41,7 @@ body {
     cursor: pointer;
 }
 
+/* Flex container to contain user & computer points & details.*/
 .flex-container {
     
     display: flex;
