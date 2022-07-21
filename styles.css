@@ -13,8 +13,8 @@
     text-align: center;
   }
   
-  /* Style the top navigation bar */
-  .topnav {
+  /* Style the start button bar */
+  .start {
     overflow: hidden;
     background-color: #3366ff;
     display: flex;
@@ -24,8 +24,8 @@
     border: 3px solid green;
   }
   
-  /* Style the topnav links */
-  .topnav button {
+  /* Style the start button */
+  .start button {
     
     color: black;  
     padding: 0px 10px;
@@ -33,7 +33,7 @@
   }
   
   /* Change color on hover */
-  .topnav button:hover {
+  .start button:hover {
     background-color: #ddd;
     color: black;
     cursor: pointer;
