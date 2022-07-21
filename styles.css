@@ -17,15 +17,19 @@
   .topnav {
     overflow: hidden;
     background-color: #3366ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    border: 3px solid green;
   }
   
   /* Style the topnav links */
   .topnav button {
     
-    color: black;
-    text-align: center;
-    padding: 4px;
-    text-decoration: none;
+    color: black;  
+    padding: 0px 10px;
+    
   }
   
   /* Change color on hover */
