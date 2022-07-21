@@ -50,25 +50,25 @@ body {
     
 }
 
-#userPoints {
+.userPoints {
     background-color: #f1f1f1;
   padding: 10px;
   flex: 25%;
 }
 
-#userCard {
+.userCard {
     background-color: #f1f1f1;
   padding: 10px;
   flex: 25%;
 }
 
-#computerCard {
+.computerCard {
     background-color: #f1f1f1;
   padding: 10px;
   flex: 25%;
 }
 
-#computerPoints {
+.computerPoints {
     background-color: #f1f1f1;
   padding: 10px;
   flex: 25%;
