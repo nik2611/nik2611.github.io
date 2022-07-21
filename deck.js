@@ -1,5 +1,6 @@
 //module.exports = cards.cards;
 
+//Initialised required card arrays
 const cardSuits = ['♤', '♥', '♦', '♧'];
 const cardNumbers = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
 const suitValues = {'J': 11, 'Q': 12, 'K': 13, 'A': 14};
@@ -25,6 +26,7 @@ class deck {
 
 let cards = new deck(cardNumbers, cardSuits, suitValues);
 console.log(cards.cards());
+
 
   
   
