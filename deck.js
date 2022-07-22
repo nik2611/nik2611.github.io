@@ -12,8 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
   let shuffledCards = cards.shuffle();
 
   startBtn.addEventListener("click", function () {
-    document.getElementById("uPoint").innerText = `Points: 0`;
-    document.getElementById("cPoint").innerText = `Points: 0`;
     document.getElementById("uCard").innerText = `Cards shuffled Please draw`;
     document.getElementById("cCard").innerText = `Cards shuffled Please draw`;
   });
@@ -27,8 +25,22 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(`Computer Value: ${computer.value}`);
     document.getElementById("cCard").innerText = computer.display;
 
-    document.getElementById("cPoint").innerText;
-    
+    if (user.value > computer.value) {
+      let val = document.getElementById("uPoint").innerText;
+      val = parseInt(val);
+      val = val + 1;
+      document.getElementById("uPoint").innerText = val;
+    }
+    else {
+          let val = document.getElementById("cPoint").innerText;
+          val = parseInt(val);
+          val = val + 1;
+          document.getElementById("cPoint").innerText = val;
+      
+    }
+
+ 
+
   });
 });
 
@@ -69,11 +81,7 @@ class Deck {
 
 
 
-if (user.value > computer.value) {
-  console.log("You Won!!!");
-} else {
-  console.log("Computer Won");
-}
+
 
 
 
