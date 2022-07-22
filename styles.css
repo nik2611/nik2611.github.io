@@ -41,6 +41,23 @@ body {
     cursor: pointer;
 }
 
+/* Flex container to show user and computer heading*/
+.player-flex-container {
+    
+    display: flex;
+    border: 3px solid black;
+    flex-direction: row;
+    
+}
+
+/* styling four divs to display user & computer points & cards.*/
+.player-flex-items {
+    background-color: #f1f1f1;
+  padding: 10px;
+  flex: 50%;
+  
+}
+
 /* Flex container to contain user & computer points & cards.*/
 .flex-container {
     
