@@ -1,4 +1,4 @@
-//module.exports = cards.cards;
+
 
 //Initialised required card arrays
 const cardSuits = ['♤', '♥', '♦', '♧'];
@@ -20,12 +20,36 @@ class Deck {
         result.push({display: this.numbers[i] + this.suits[j], value});
       }
      };
+     this.deckOfCards = result;
      return result;
+  }
+
+  shuffle() {
+    let shuffled = this.deckOfCards.sort(function(){return 0.5 - Math.random()});
+    return shuffled;
   }
 }
 
 let cards = new Deck(cardNumbers, cardSuits, suitValues);
 console.log(cards.cards());
+
+let deckOfCards = cards.cards();
+console.log(cards.shuffle());
+let shuffledCards = cards.shuffle();
+
+const user = shuffledCards.pop();
+console.log(`User Value: ${user.value}`);
+const computer = shuffledCards.pop();
+console.log(`Computer Value: ${computer.value}`);
+if(user.value > computer.value){
+  console.log("You Won!!!");
+} else{
+  console.log("Computer Won");
+}
+
+
+
+module.exports = Deck;
 
 
   
