@@ -1,3 +1,36 @@
+// Event listeners
+document.addEventListener("DOMContentLoaded", function () {
+  console.log("DOMContentLoaded");
+  let startBtn = document.getElementById("start");
+  let drawBtn = document.getElementById("draw");
+
+  let cards = new Deck(cardNumbers, cardSuits, suitValues);
+  console.log(cards.cards());
+  let deckOfCards = cards.cards();
+
+  console.log(cards.shuffle());
+  let shuffledCards = cards.shuffle();
+
+  startBtn.addEventListener("click", function () {
+    document.getElementById("uPoint").innerText = `Points: 0`;
+    document.getElementById("cPoint").innerText = `Points: 0`;
+    document.getElementById("uCard").innerText = `Cards shuffled Please draw`;
+    document.getElementById("cCard").innerText = `Cards shuffled Please draw`;
+  });
+
+  drawBtn.addEventListener("click", function () {
+    const user = shuffledCards.pop();
+    console.log(`User Value: ${user.value}`);
+    document.getElementById("uCard").innerText = user.display;
+
+    const computer = shuffledCards.pop();
+    console.log(`Computer Value: ${computer.value}`);
+    document.getElementById("cCard").innerText = computer.display;
+
+    document.getElementById("cPoint").innerText;
+    
+  });
+});
 
 
 //Initialised required card arrays
@@ -30,18 +63,11 @@ class Deck {
   }
 }
 
-let cards = new Deck(cardNumbers, cardSuits, suitValues);
-console.log(cards.cards());
-let deckOfCards = cards.cards();
 
-console.log(cards.shuffle());
-let shuffledCards = cards.shuffle();
 
-const user = shuffledCards.pop();
-console.log(`User Value: ${user.value}`);
 
-const computer = shuffledCards.pop();
-console.log(`Computer Value: ${computer.value}`);
+
+
 
 if (user.value > computer.value) {
   console.log("You Won!!!");
