@@ -1,3 +1,10 @@
+
+//Initialised required card arrays
+const cardSuits = ['♤', '♥', '♦', '♧'];
+const cardNumbers = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+const suitValues = { 'J': 11, 'Q': 12, 'K': 13, 'A': 14 };
+
+
 // Event listeners
 document.addEventListener("DOMContentLoaded", function () {
   console.log("DOMContentLoaded");
@@ -11,12 +18,17 @@ document.addEventListener("DOMContentLoaded", function () {
   console.log(cards.shuffle());
   let shuffledCards = cards.shuffle();
 
+  // Start Game button event listening
   startBtn.addEventListener("click", function () {
     document.getElementById("uCard").innerText = `Cards shuffled Please draw`;
     document.getElementById("cCard").innerText = `Cards shuffled Please draw`;
+    document.getElementById("uPoint").innerText = "0";
+    document.getElementById("cPoint").innerText = "0";
   });
 
+  // Draw Game button event listening
   drawBtn.addEventListener("click", function () {
+    if(shuffledCards.length !== 0){
     const user = shuffledCards.pop();
     console.log(`User Value: ${user.value}`);
     document.getElementById("uCard").innerText = user.display;
@@ -38,18 +50,28 @@ document.addEventListener("DOMContentLoaded", function () {
           document.getElementById("cPoint").innerText = val;
       
     }
+  }
 
- 
+  else {
+    let finalUPoint = document.getElementById("uPoint").innerText;
+    let finalCPoint = document.getElementById("cPoint").innerText;
+    finalUPoint = parseInt(finalUPoint);
+    finalCPoint = parseInt(finalCPoint);
+
+    if(finalUPoint > finalCPoint){
+      document.getElementById("uCard").innerText = `You Won!!!`;
+    }
+    else{
+      document.getElementById("cCard").innerText = `Computer Won!!!`;
+    }
+
+  }
 
   });
 });
 
 
-//Initialised required card arrays
-const cardSuits = ['♤', '♥', '♦', '♧'];
-const cardNumbers = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
-const suitValues = { 'J': 11, 'Q': 12, 'K': 13, 'A': 14 };
-
+// Deck class defintion
 class Deck {
   constructor(numbers, suits, suitVal) {
     this.numbers = numbers;
@@ -74,16 +96,6 @@ class Deck {
     return shuffled;
   }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 module.exports = Deck;
