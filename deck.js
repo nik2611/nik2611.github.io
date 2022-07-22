@@ -13,61 +13,70 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let cards = new Deck(cardNumbers, cardSuits, suitValues);
   console.log(cards.cards());
-  let deckOfCards = cards.cards();
+  cards.cards();
 
   console.log(cards.shuffle());
   let shuffledCards = cards.shuffle();
 
   // Start Game button event listening
-  startBtn.addEventListener("click", function () {
+  startBtn.addEventListener("click", () => {
     document.getElementById("uCard").innerText = `Cards shuffled Please draw`;
     document.getElementById("cCard").innerText = `Cards shuffled Please draw`;
     document.getElementById("uPoint").innerText = "0";
     document.getElementById("cPoint").innerText = "0";
+
   });
 
-  // Draw Game button event listening
-  drawBtn.addEventListener("click", function () {
-    if(shuffledCards.length !== 0){
-    const user = shuffledCards.pop();
-    console.log(`User Value: ${user.value}`);
-    document.getElementById("uCard").innerText = user.display;
+   // Draw Game button event listening
+   drawBtn.addEventListener("click", function () {
 
-    const computer = shuffledCards.pop();
-    console.log(`Computer Value: ${computer.value}`);
-    document.getElementById("cCard").innerText = computer.display;
+    // The below makes the draw event happen and gives points to
+    // players based on who got the highest value card
+    if (shuffledCards.length !== 0) {
+      const user = shuffledCards.pop();
+      console.log(`User Value: ${user.value}`);
+      document.getElementById("uCard").innerText = user.display;
 
-    if (user.value > computer.value) {
-      let val = document.getElementById("uPoint").innerText;
-      val = parseInt(val);
-      val = val + 1;
-      document.getElementById("uPoint").innerText = val;
+      const computer = shuffledCards.pop();
+      console.log(`Computer Value: ${computer.value}`);
+      document.getElementById("cCard").innerText = computer.display;
+
+      if (user.value > computer.value) {
+        let val = document.getElementById("uPoint").innerText;
+        val = parseInt(val);
+        val = val + 1;
+        document.getElementById("uPoint").innerText = val;
+      }
+      else {
+        let val = document.getElementById("cPoint").innerText;
+        val = parseInt(val);
+        val = val + 1;
+        document.getElementById("cPoint").innerText = val;
+
+      }
     }
+
+    // If there are no more cards to draw, the below displays who won
     else {
-          let val = document.getElementById("cPoint").innerText;
-          val = parseInt(val);
-          val = val + 1;
-          document.getElementById("cPoint").innerText = val;
-      
+      let finalUPoint = document.getElementById("uPoint").innerText;
+      let finalCPoint = document.getElementById("cPoint").innerText;
+      finalUPoint = parseInt(finalUPoint);
+      finalCPoint = parseInt(finalCPoint);
+
+      if (finalUPoint > finalCPoint) {
+        document.getElementById("uCard").innerText = `You Won!!!`;
+      }
+      else if (finalUPoint === finalCPoint) {
+        document.getElementById("uCard").innerText = `Game Draw!!!`;
+        document.getElementById("cCard").innerText = `Game Draw!!!`;
+      }
+      else {
+        document.getElementById("cCard").innerText = `Computer Won!!!`;
+      }
+
     }
-  }
-
-  else {
-    let finalUPoint = document.getElementById("uPoint").innerText;
-    let finalCPoint = document.getElementById("cPoint").innerText;
-    finalUPoint = parseInt(finalUPoint);
-    finalCPoint = parseInt(finalCPoint);
-
-    if(finalUPoint > finalCPoint){
-      document.getElementById("uCard").innerText = `You Won!!!`;
-    }
-    else{
-      document.getElementById("cCard").innerText = `Computer Won!!!`;
-    }
-
-  }
-
   });
+
 });
 
 
