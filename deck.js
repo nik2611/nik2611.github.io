@@ -11,12 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
   let startBtn = document.getElementById("start");
   let drawBtn = document.getElementById("draw");
 
-  let cards = new Deck(cardNumbers, cardSuits, suitValues);
-  console.log(cards.cards());
-  cards.cards();
-
-  console.log(cards.shuffle());
-  let shuffledCards = cards.shuffle();
 
   // Start Game button event listening
   startBtn.addEventListener("click", () => {
@@ -24,6 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("cCard").innerText = `Cards shuffled Please draw`;
     document.getElementById("uPoint").innerText = "0";
     document.getElementById("cPoint").innerText = "0";
+    return shuffledCards = createDeck();
 
   });
 
@@ -32,37 +27,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // The below makes the draw event happen and gives points to
     // players based on who got the highest value card
+
     if (shuffledCards.length !== 0) {
 
-      let val1 = document.getElementById("uPoint").innerText;
-      let val2 = document.getElementById("cPoint").innerText;
 
-      //Checks if start button is pressed.
-      if ((val1 || val2) == "") {
-        alert("Please press start button first");
+      const user = shuffledCards.pop();
+      console.log(`User Value: ${user.value}`);
+      document.getElementById("uCard").innerText = user.display;
+
+      const computer = shuffledCards.pop();
+      console.log(`Computer Value: ${computer.value}`);
+      document.getElementById("cCard").innerText = computer.display;
+
+      if (user.value > computer.value) {
+        let val1 = document.getElementById("uPoint").innerText;
+        val1 = parseInt(val1);
+        val1 = val1 + 1;
+        document.getElementById("uPoint").innerText = val1;
       }
-
       else {
-        const user = shuffledCards.pop();
-        console.log(`User Value: ${user.value}`);
-        document.getElementById("uCard").innerText = user.display;
+        let val2 = document.getElementById("cPoint").innerText;
+        val2 = parseInt(val2);
+        val2 = val2 + 1;
+        document.getElementById("cPoint").innerText = val2;
 
-        const computer = shuffledCards.pop();
-        console.log(`Computer Value: ${computer.value}`);
-        document.getElementById("cCard").innerText = computer.display;
-
-        if (user.value > computer.value) {
-          val1 = parseInt(val1);
-          val1 = val1 + 1;
-          document.getElementById("uPoint").innerText = val1;
-        }
-        else {
-          val2 = parseInt(val2);
-          val2 = val2 + 1;
-          document.getElementById("cPoint").innerText = val2;
-
-        }
       }
+
     }
 
     // If there are no more cards to draw, the below displays who won
@@ -84,10 +74,20 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
     }
-  });
 
+  });
 });
 
+//creates deck of cards and shuffles them
+function createDeck() {
+  let cards = new Deck(cardNumbers, cardSuits, suitValues);
+  console.log(cards.cards());
+  cards.cards();
+
+  console.log(cards.shuffle());
+  let shuffledCards = cards.shuffle();
+  return shuffledCards;
+}
 
 // Deck class defintion
 class Deck {
