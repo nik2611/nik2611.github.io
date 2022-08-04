@@ -27,32 +27,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
   });
 
-   // Draw Game button event listening
-   drawBtn.addEventListener("click", function () {
+  // Draw Game button event listening
+  drawBtn.addEventListener("click", function () {
 
     // The below makes the draw event happen and gives points to
     // players based on who got the highest value card
     if (shuffledCards.length !== 0) {
-      const user = shuffledCards.pop();
-      console.log(`User Value: ${user.value}`);
-      document.getElementById("uCard").innerText = user.display;
 
-      const computer = shuffledCards.pop();
-      console.log(`Computer Value: ${computer.value}`);
-      document.getElementById("cCard").innerText = computer.display;
+      let val1 = document.getElementById("uPoint").innerText;
+      let val2 = document.getElementById("cPoint").innerText;
 
-      if (user.value > computer.value) {
-        let val = document.getElementById("uPoint").innerText;
-        val = parseInt(val);
-        val = val + 1;
-        document.getElementById("uPoint").innerText = val;
+      //Checks if start button is pressed.
+      if ((val1 || val2) == "") {
+        alert("Please press start button first");
       }
-      else {
-        let val = document.getElementById("cPoint").innerText;
-        val = parseInt(val);
-        val = val + 1;
-        document.getElementById("cPoint").innerText = val;
 
+      else {
+        const user = shuffledCards.pop();
+        console.log(`User Value: ${user.value}`);
+        document.getElementById("uCard").innerText = user.display;
+
+        const computer = shuffledCards.pop();
+        console.log(`Computer Value: ${computer.value}`);
+        document.getElementById("cCard").innerText = computer.display;
+
+        if (user.value > computer.value) {
+          val1 = parseInt(val1);
+          val1 = val1 + 1;
+          document.getElementById("uPoint").innerText = val1;
+        }
+        else {
+          val2 = parseInt(val2);
+          val2 = val2 + 1;
+          document.getElementById("cPoint").innerText = val2;
+
+        }
       }
     }
 
